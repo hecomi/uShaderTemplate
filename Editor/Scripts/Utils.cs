@@ -11,7 +11,7 @@ public static class Utils
 {
     public static HashSet<string> GetShaderTemplatePathList()
     {
-        var files = Resources.LoadAll<TextAsset>(Common.Editor.templateDirectoryPath);
+        var files = Resources.LoadAll<TextAsset>(Common.Setting.templateDirectoryPath);
         var list = new HashSet<string>();
         foreach (var file in files) {
             var path = AssetDatabase.GetAssetPath(file);

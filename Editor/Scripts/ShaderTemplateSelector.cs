@@ -26,7 +26,7 @@ public class ShaderTemplateSelector
             if (string.IsNullOrEmpty(prop.stringValue)) {
                 prop.stringValue = list_[0];
             }
-            var dir = Common.Editor.templateDirectoryPath;
+            var dir = Common.Setting.templateDirectoryPath;
             var asset = Resources.Load<TextAsset>(dir + "/" + prop.stringValue);
             return asset ? asset.text : "";
         }

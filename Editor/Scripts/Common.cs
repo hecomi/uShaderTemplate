@@ -28,7 +28,12 @@ public static class Editor
     public const int fontSize = 12;
     public const bool wordWrap = false;
     public const int minHeight = 200;
+}
+
+public static class Setting
+{
     public const int menuOrder = 1000;
+    public const string menuPlace = "Shader/uShaderTemplate/";
     public const string defaultConstants = "uShaderTemplate/Default Constants";
     public const string templateDirectoryPath = "ShaderTemplates";
 }

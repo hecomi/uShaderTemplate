@@ -27,8 +27,8 @@ public struct ShaderBlock
 }
 
 [CreateAssetMenu(
-    menuName = "uShaderTemplate/Generator", 
-    order = Common.Editor.menuOrder)]
+    menuName = Common.Setting.menuPlace + "Generator", 
+    order = Common.Setting.menuOrder)]
 public class Generator : ScriptableObject
 {
     public string shaderName = "";
@@ -49,7 +49,7 @@ public class Generator : ScriptableObject
     void OnEnable()
     {
         if (constants == null) {
-            constants = Resources.Load<Constants>(Common.Editor.defaultConstants);
+            constants = Resources.Load<Constants>(Common.Setting.defaultConstants);
         }
     }
 }
