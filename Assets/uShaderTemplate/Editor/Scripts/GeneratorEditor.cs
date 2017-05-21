@@ -269,7 +269,7 @@ public class GeneratorEditor : Editor
         EditorGUILayout.BeginHorizontal();
         {
             var buttonFontSize = GUI.skin.label.fontSize;
-            var buttonPadding = new RectOffset(24, 24, 6, 6);
+            var buttonPadding = new RectOffset(12, 12, 6, 6);
 
             GUILayout.FlexibleSpace();
             var style = new GUIStyle(EditorStyles.miniButtonLeft);
@@ -284,6 +284,13 @@ public class GeneratorEditor : Editor
             style.padding = buttonPadding;
             if (GUILayout.Button("Create Material", style)) {
                 CreateMaterial();
+            }
+
+            style = new GUIStyle(EditorStyles.miniButtonMid);
+            style.fontSize = buttonFontSize;
+            style.padding = buttonPadding;
+            if (GUILayout.Button("Reset to Default", style)) {
+                ResetToDefault();
             }
 
             style = new GUIStyle(EditorStyles.miniButtonMid);
@@ -441,6 +448,14 @@ public class GeneratorEditor : Editor
         } catch (System.Exception e) {
             AddError(e.Message);
         }
+    }
+
+    void ResetToDefault()
+    {
+        blocks_.ClearArray();
+        conditions_.ClearArray();
+        variables_.ClearArray();
+        OnTemplateChanged();
     }
 
     void ReconvertAll()
