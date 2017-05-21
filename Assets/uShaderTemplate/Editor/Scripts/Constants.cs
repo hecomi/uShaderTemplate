@@ -11,8 +11,8 @@ public struct Constant
 }
 
 [CreateAssetMenu(
-    menuName = "uShaderTemplate/Constants", 
-    order = Common.Editor.menuOrder + 1)]
+    menuName = Common.Setting.menuPlace + "Constants", 
+    order = Common.Setting.menuOrder + 1)]
 public class Constants : ScriptableObject
 {
     public Constant[] values;
