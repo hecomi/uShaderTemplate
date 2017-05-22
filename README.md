@@ -22,9 +22,9 @@ Overview
 --------
 
 Generator is an asset file that manages a generated shader, save parameters,
-and provide you an interface to customize the shader with some rules
+and provide an interface to customize the shader with some rules
 written in **shader template**. The following image is an example of a Generator
-inspector which is from shader template.
+inspector which is automatically generated from shader template.
 
 ![Inspector](https://raw.githubusercontent.com/wiki/hecomi/uShaderTemplate/inspector.png)
 
