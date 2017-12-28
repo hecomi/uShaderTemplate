@@ -58,7 +58,7 @@ public class GeneratorEditor : Editor
         constantsFolded_ = serializedObject.FindProperty("constantsFolded");
 
         template_ = new ShaderTemplateSelector(serializedObject.FindProperty("shaderTemplate"));
-        template_.onChange += OnTemplateChanged;
+        template_.onChange.AddListener(OnTemplateChanged);
 
         watcher_.onChanged.AddListener(CheckShaderUpdate);
         if (hasShaderReference) {
@@ -71,7 +71,7 @@ public class GeneratorEditor : Editor
     void OnDisable()
     {
         if (template_ != null) {
-            template_.onChange -= OnTemplateChanged;
+            template_.onChange.RemoveListener(OnTemplateChanged);
         }
         if (watcher_ != null) {
             watcher_.Stop();
