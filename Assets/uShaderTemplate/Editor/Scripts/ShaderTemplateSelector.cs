@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEditor;
 using System.Collections.Generic;
 using System.IO;
@@ -10,8 +11,8 @@ public class ShaderTemplateSelector
 {
     public SerializedProperty prop { get; private set; }
 
-    public delegate void OnChangeEventHandler();
-    public OnChangeEventHandler onChange = () => {};
+    public class OnChangeEventHandler : UnityEvent {}
+    public OnChangeEventHandler onChange = new OnChangeEventHandler();
 
     List<string> list_ = new List<string>();
 
@@ -56,7 +57,7 @@ public class ShaderTemplateSelector
         var cur = list_[selectedIndex];
         if (pre != cur) {
             prop.stringValue = cur;
-            onChange();
+            onChange.Invoke();
         }
     }
 }
