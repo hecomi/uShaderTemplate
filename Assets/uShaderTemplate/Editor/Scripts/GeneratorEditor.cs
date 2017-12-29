@@ -96,8 +96,13 @@ public class GeneratorEditor : Editor
         DrawBlocks();
         DrawConstants();
         DrawMaterialReferences();
+
+        EditorGUILayout.Separator();
+
         DrawButtons();
         DrawMessages();
+
+        EditorGUILayout.Separator();
 
         serializedObject.ApplyModifiedProperties();
     }
