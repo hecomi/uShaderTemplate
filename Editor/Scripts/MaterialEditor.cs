@@ -31,7 +31,7 @@ public class MaterialEditor : ShaderGUI
 
         if (cachedEditor_) {
             cachedEditor_.OnInspectorGUI();
-            EditorGUILayout.Space();
+            EditorGUILayout.Separator();
         }
 
         folded_ = Utils.Foldout("Material Properties", folded_);
@@ -40,7 +40,6 @@ public class MaterialEditor : ShaderGUI
             base.OnGUI(materialEditor, properties);
             --EditorGUI.indentLevel;
         }
-
 	}
 }
 
