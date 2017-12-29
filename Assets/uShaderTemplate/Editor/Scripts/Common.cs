@@ -36,6 +36,7 @@ public static class Setting
     public const string menuPlace = "Shader/uShaderTemplate/";
     public const string defaultConstants = "uShaderTemplate/Default Constants";
     public const string templateDirectoryPath = "ShaderTemplates";
+    public const string templateFileExtension = ".txt";
 }
 
 }
