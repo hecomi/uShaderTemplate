@@ -71,7 +71,8 @@ public class ShaderTemplateSelector
             var openButtonStyle = EditorStyles.miniButton;
             openButtonStyle.fixedWidth = 40;
             if (GUILayout.Button("Open", openButtonStyle)) {
-                EditorUtility.OpenWithDefaultApp(selected.path);
+                var asset = AssetDatabase.LoadAssetAtPath(selected.path, typeof(Object));
+                AssetDatabase.OpenAsset(asset);
             }
 
             var pre = prop.stringValue;
