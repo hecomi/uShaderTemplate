@@ -45,11 +45,14 @@ public class ShaderTemplateSelector
 
         var paths = Utils.GetShaderTemplatePathList();
         foreach (var path in paths) {
-            if (Path.GetExtension(path) == ".txt") {
-                var name = Path.GetFileNameWithoutExtension(path);
+            if (Path.GetExtension(path) == Common.Setting.templateFileExtension) {
+                var index = path.IndexOf(Common.Setting.templateDirectoryPath);
+                var name = path
+                    .Substring(index + Common.Setting.templateDirectoryPath.Length + 1)
+                    .Replace(Common.Setting.templateFileExtension, "");
                 var info = new TemplateInfo() {
                     name = name,
-                    path = path
+                    path = path,
                 };
                 list_.Add(info);
             }
@@ -69,8 +72,8 @@ public class ShaderTemplateSelector
             var selected = list_[selectedIndex];
 
             var openButtonStyle = EditorStyles.miniButton;
-            openButtonStyle.fixedWidth = 40;
-            if (GUILayout.Button("Open", openButtonStyle)) {
+            openButtonStyle.fixedWidth = 36;
+            if (GUILayout.Button("Edit", openButtonStyle)) {
                 var asset = AssetDatabase.LoadAssetAtPath(selected.path, typeof(Object));
                 AssetDatabase.OpenAsset(asset);
             }
