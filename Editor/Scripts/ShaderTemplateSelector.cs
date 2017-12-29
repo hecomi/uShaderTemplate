@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using UnityEditor;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace uShaderTemplate
 {
@@ -14,7 +15,12 @@ public class ShaderTemplateSelector
     public class OnChangeEventHandler : UnityEvent {}
     public OnChangeEventHandler onChange = new OnChangeEventHandler();
 
-    List<string> list_ = new List<string>();
+    struct TemplateInfo
+    {
+        public string name;
+        public string path;
+    }
+    List<TemplateInfo> list_ = new List<TemplateInfo>();
 
     public string selected
     {
@@ -25,7 +31,7 @@ public class ShaderTemplateSelector
     {
         get {
             if (string.IsNullOrEmpty(prop.stringValue)) {
-                prop.stringValue = list_[0];
+                prop.stringValue = list_[0].name;
             }
             var dir = Common.Setting.templateDirectoryPath;
             var asset = Resources.Load<TextAsset>(dir + "/" + prop.stringValue);
@@ -41,24 +47,40 @@ public class ShaderTemplateSelector
         foreach (var path in paths) {
             if (Path.GetExtension(path) == ".txt") {
                 var name = Path.GetFileNameWithoutExtension(path);
-                list_.Add(name);
+                var info = new TemplateInfo() {
+                    name = name,
+                    path = path
+                };
+                list_.Add(info);
             }
         }
     }
 
     public void Draw()
     {
-        var currentIndex = list_.IndexOf(prop.stringValue);
+        var currentIndex = list_.Select(x => x.name).ToList().IndexOf(prop.stringValue);
         if (currentIndex == -1) currentIndex = 0;
 
-        var selectedIndex = EditorGUILayout.Popup("Shader Template", currentIndex, list_.ToArray());
+        EditorGUILayout.BeginHorizontal(); {
+            var selectedIndex = EditorGUILayout.Popup(
+                "Shader Template", 
+                currentIndex, 
+                list_.Select(x => x.name).ToArray());
+            var selected = list_[selectedIndex];
 
-        var pre = prop.stringValue;
-        var cur = list_[selectedIndex];
-        if (pre != cur) {
-            prop.stringValue = cur;
-            onChange.Invoke();
-        }
+            var openButtonStyle = EditorStyles.miniButton;
+            openButtonStyle.fixedWidth = 40;
+            if (GUILayout.Button("Open", openButtonStyle)) {
+                EditorUtility.OpenWithDefaultApp(selected.path);
+            }
+
+            var pre = prop.stringValue;
+            var cur = selected.name;
+            if (pre != cur) {
+                prop.stringValue = cur;
+                onChange.Invoke();
+            }
+        } EditorGUILayout.EndHorizontal();
     }
 }
 
