@@ -409,18 +409,20 @@ public class GeneratorEditor : Editor
 
     void ExportShader()
     {
-        ShaderTemplateConvertInfo info = new ShaderTemplateConvertInfo();
+        var info = new ShaderTemplateConvertInfo();
 
         foreach (var kv in templateParser_.conditions) {
             var prop = FindProperty(conditions_, kv.Key);
             var value = prop.FindPropertyRelative("value");
             info.conditions.Add(kv.Key, value.boolValue);
         }
+
         foreach (var kv in templateParser_.blocks) {
             var prop = FindProperty(blocks_, kv.Key);
             var value = prop.FindPropertyRelative("value");
             info.blocks.Add(kv.Key, value.stringValue);
         }
+
         foreach (var kv in templateParser_.variables) {
             var prop = FindProperty(variables_, kv.Key);
             var value = prop.FindPropertyRelative("value");
@@ -463,11 +465,17 @@ public class GeneratorEditor : Editor
     void ExportShaderWithErrorCheck()
     {
         ClearError();
+
+        var generator = target as Generator;
+        generator.OnBeforeConvert();
+
         try {
             ExportShader();
         } catch (System.Exception e) {
             AddError(e.Message);
         }
+
+        generator.OnAfterConvert();
     }
 
     void ResetToDefault()

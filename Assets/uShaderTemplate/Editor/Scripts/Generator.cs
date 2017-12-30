@@ -45,6 +45,9 @@ public class Generator : ScriptableObject
     public bool variablesFolded = false;
     public bool materialsFolded = false;
     public bool constantsFolded = false;
+
+    public virtual void OnBeforeConvert() {}
+    public virtual void OnAfterConvert() {}
 }
 
 }
