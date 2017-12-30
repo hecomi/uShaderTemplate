@@ -185,6 +185,29 @@ the *Constants* field of Generators which you want to apply the parameters to.
 Please remember that if you modify a parameter in Constants,
 you have to *Reconvert All* to apply the change to all generated shaders.
 
+In a shader template, you can specify the default `Constants` using `@constants` line if you want it.
+
+```
+Shader "Custom/<Name>"
+{
+
+// you can insert this line anywhere in the template file.
+@constants uShaderTemplate/Constants/Custom Constants
+
+Properties
+{
+...
+```
+
+
+Callbacks
+---------
+
+`Generator` and `Constants` have virtual functions, `OnBeforeConvert()` and `OnAfterConvert()`.
+You can create custom `Generator` and `Constants` inherited from these classes and override
+them to add callbacks just before and after convert.
+
+
 License
 -------
 
