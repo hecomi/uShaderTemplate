@@ -1,7 +1,7 @@
 Shader "Custom/<Name>"
 {
 
-@constants uShaderTemplate/Custom Constants
+@constants uShaderTemplate/Constants/Custom Constants
 
 Properties
 {
