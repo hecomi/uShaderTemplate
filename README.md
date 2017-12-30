@@ -187,7 +187,7 @@ you have to *Reconvert All* to apply the change to all generated shaders.
 
 In a shader template, you can specify the default `Constants` using `@constants` line if you want it.
 
-```
+```shader
 Shader "Custom/<Name>"
 {
 
