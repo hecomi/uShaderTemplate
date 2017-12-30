@@ -1,4 +1,3 @@
-
 Shader "Custom/VertFrag"
 {
 
@@ -22,14 +21,13 @@ CGINCLUDE
 struct v2f
 {
     float2 uv : TEXCOORD0;
-
+    UNITY_FOG_COORDS(1)
     float4 vertex : SV_POSITION;
 };
 
 // @block VertexShader
 sampler2D _MainTex;
 float4 _MainTex_ST;
-
 v2f vert(appdata_full v)
 {
     v2f o;
@@ -56,7 +54,7 @@ Pass
     CGPROGRAM
     #pragma vertex vert
     #pragma fragment frag
-
+    #pragma multi_compile_fog
     ENDCG
 }
 
