@@ -54,16 +54,22 @@ public class ShaderTemplateParser
 
     public string Convert(ShaderTemplateConvertInfo info)
     {
-        var code = this.code;
+        if (constants != null) {
+            constants.OnBeforeConvert();
+        }
 
+        var code = this.code;
         code = WriteConstants(code);
         code = WriteConditions(code, info);
         code = WriteBlocks(code, info);
         code = WriteVariables(code, info);
-        
         code = code.Replace("\r\n", "\n");
         var regex = new Regex(@"\n\n\n+");
         code = regex.Replace(code, "\n\n");
+
+        if (constants != null) {
+            constants.OnAfterConvert();
+        }
 
         return code;
     }
