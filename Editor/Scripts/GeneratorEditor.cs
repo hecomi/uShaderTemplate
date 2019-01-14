@@ -471,7 +471,7 @@ public class GeneratorEditor : Editor
 
         try {
             ExportShader();
-        } catch (System.Exception e) {
+        } catch (Exception e) {
             AddError(e.Message);
         }
 
@@ -543,7 +543,7 @@ public class GeneratorEditor : Editor
     void HandleKeyEvents()
     {
         var e = Event.current;
-        var isKeyPressing = e.type == EventType.Layout; // not KeyDown
+        var isKeyPressing = e.type == EventType.KeyUp;
         if (isKeyPressing && e.control && e.keyCode == KeyCode.R) {
             ExportShaderWithErrorCheck();
         }
