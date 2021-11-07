@@ -486,6 +486,13 @@ public class GeneratorEditor : Editor
         OnTemplateChanged();
     }
 
+    public void Reconvert()
+    {
+        CheckShaderUpdate();
+        OnTemplateChanged();
+        ExportShaderWithErrorCheck();
+    }
+
     void ReconvertAll()
     {
         Debug.LogFormat("<color=blue>Reconvert started.\n------------------------------</color>"); 
@@ -494,14 +501,11 @@ public class GeneratorEditor : Editor
             try {
                 if (target == generator) {
                     Debug.LogFormat("<color=green>{0}</color>", GetShaderPath());
-                    OnTemplateChanged();
-                    ExportShaderWithErrorCheck();
+                    Reconvert();
                 } else {
                     var editor = Editor.CreateEditor(generator) as GeneratorEditor;
                     Debug.LogFormat("<color=green>{0}</color>", editor.GetShaderPath());
-                    editor.CheckShaderUpdate();
-                    editor.OnTemplateChanged();
-                    editor.ExportShaderWithErrorCheck();
+                    editor.Reconvert();
                 }
             } catch (System.Exception e) {
                 Debug.LogFormat("<color=red>Error: " + e.Message + "</color>"); 
