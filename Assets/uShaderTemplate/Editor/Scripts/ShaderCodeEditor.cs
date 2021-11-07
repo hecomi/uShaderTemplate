@@ -28,13 +28,15 @@ public class ShaderCodeEditor
 
         font_ = Resources.Load<Font>(Common.Editor.font);
 
-        Color color, bgColor;
+        Color color, bgColor, cursorColor;
         ColorUtility.TryParseHtmlString(Common.Color.background, out bgColor);
         ColorUtility.TryParseHtmlString(Common.Color.color, out color);
+        ColorUtility.TryParseHtmlString(Common.Color.cursorColor, out cursorColor);
 
         editor_ = new CodeEditor(name);
         editor_.backgroundColor = bgColor;
         editor_.textColor = color;
+        editor_.cursorColor = cursorColor;
         editor_.highlighter = ShaderHighlighter.Highlight;
     }
 
@@ -54,9 +56,8 @@ public class ShaderCodeEditor
             GUI.FocusControl(name);
         }
 
-        var minHeight = GUILayout.MinHeight(Common.Editor.minHeight);
-        var maxHeight = GUILayout.MaxHeight(Screen.height);
-        scrollPos_ = EditorGUILayout.BeginScrollView(scrollPos_, minHeight, maxHeight);
+        var height = GUILayout.Height(Common.Editor.height);
+        scrollPos_ = EditorGUILayout.BeginScrollView(scrollPos_, height);
         {
             var style = new GUIStyle(GUI.skin.textArea);
             style.padding = new RectOffset(6, 6, 6, 6);

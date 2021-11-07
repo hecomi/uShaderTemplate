@@ -10,6 +10,7 @@ public static class Color
 { 
     public const string background = Solarized.base03;
     public const string color = "#ffffff";
+    public const string cursorColor = "#ffffff";
     public const string type = Solarized.yellow;
     public const string keyword = Solarized.green;
     public const string symbol = Solarized.base1;
@@ -27,7 +28,7 @@ public static class Editor
     public const string font = "uShaderTemplate/Font/NotoMono-regular";
     public const int fontSize = 12;
     public const bool wordWrap = false;
-    public const int minHeight = 200;
+    public const int height = 200;
 }
 
 public static class Setting

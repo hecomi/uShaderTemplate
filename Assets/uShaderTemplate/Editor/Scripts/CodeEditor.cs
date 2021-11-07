@@ -9,6 +9,7 @@ public class CodeEditor
     public string controlName { get; set; }
     public Color backgroundColor { get; set; }
     public Color textColor { get; set; }
+    public Color cursorColor { get; set; }
 
     string cachedCode { get; set; }
     string cachedHighlightedCode { get; set; }
@@ -31,9 +32,8 @@ public class CodeEditor
     {
         var preBackgroundColor = GUI.backgroundColor;
         var preColor = GUI.color;
-
-        GUI.backgroundColor = backgroundColor;
-        GUI.color = textColor;
+        var preCursorColor = GUI.skin.settings.cursorColor;
+        var preCursorFlashSpeed = GUI.skin.settings.cursorFlashSpeed;
 
         var backStyle = new GUIStyle(style);
         backStyle.normal.textColor = Color.clear;
@@ -41,12 +41,15 @@ public class CodeEditor
         backStyle.active.textColor = Color.clear;
         backStyle.focused.textColor = Color.clear;
 
+        GUI.backgroundColor = backgroundColor;
+        GUI.color = textColor;
+        GUI.skin.settings.cursorColor = cursorColor;
         GUI.SetNextControlName(controlName);
 
         // IMPORTANT: 
         // Sadly, we cannot use TextEditor with (EditorGUILayout|EditorGUI).TextArea()... X(
         // And GUILayout.TextArea() cannot handle TAB key... ;_;
-        // GUI.TextArea needs a lot of tasks to implement absic functions... T_T
+        // GUI.TextArea needs a lot of tasks to implement basic functions... T_T
         var editedCode = EditorGUILayout.TextArea(code, backStyle, GUILayout.ExpandHeight(true));
 
         // So, this does not work...
@@ -63,6 +66,8 @@ public class CodeEditor
         }
 
         GUI.backgroundColor = Color.clear;
+        GUI.color = textColor;
+        GUI.skin.settings.cursorColor = Color.clear;
 
         var foreStyle = new GUIStyle(style);
         foreStyle.richText = true;
@@ -75,6 +80,7 @@ public class CodeEditor
 
         GUI.backgroundColor = preBackgroundColor;
         GUI.color = preColor;
+        GUI.skin.settings.cursorColor = preCursorColor;
 
         return code;
     }
