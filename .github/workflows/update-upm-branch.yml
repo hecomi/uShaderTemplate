@@ -24,4 +24,4 @@ jobs:
           git-tag: ${{ steps.tag.outputs.name }}
           pkg-root-dir-path: Assets/uShaderTemplate
           main-branch: master
-          sample-dir: Examples
+          samples-dir: Examples
