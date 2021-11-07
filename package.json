@@ -1,0 +1,22 @@
+{
+    "name":"com.hecomi.ushadertemplate",
+    "version": "1.0.0",
+    "displayName": "uShaderTemplate",
+    "description": "This is an Unity editor extension for generating shader code from template files.",
+    "license": "MIT License",
+    "author": {
+        "name": "hecomi",
+        "url": "https://tips.hecomi.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/hecomi/uShaderTemplate"
+    },
+    "samples": [
+        {
+            "displayName": "Samples",
+            "description": "Collection of samples for uShaderTemplate.",
+            "path": "Samples~"
+        }
+    ]
+}
