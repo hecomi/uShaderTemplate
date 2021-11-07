@@ -7,7 +7,9 @@ Install
 -------
 
 Download the latest .unitypackage from [Releases](https://github.com/hecomi/uShaderTemplate/releases) page,
-then import it.
+then import it into your project.
+
+Alternatively, add `https://github.com/hecomi/uShaderTemplate.git#upm` to Package Manager.
 
 Usage
 -----
