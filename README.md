@@ -1,15 +1,20 @@
 uShaderTemplate
 ===============
 
-**uShaderTemplate** is an editor asset to create shader from templates.
+**uShaderTemplate** is an editor asset to create shaders from templates.
 
 Install
 -------
 
-Download the latest .unitypackage from [Releases](https://github.com/hecomi/uShaderTemplate/releases) page,
-then import it into your project.
-
-Alternatively, add `https://github.com/hecomi/uShaderTemplate.git#upm` to Package Manager.
+- Unity Package
+  - Download the latest .unitypackage from [Release page](https://github.com/hecomi/uShaderTemplate/releases).
+- Git URL (UPM)
+  - Add `https://github.com/hecomi/uShaderTemplate.git#upm` to Package Manager.
+- Scoped Registry (UPM)
+  - Add a scoped registry to your project.
+    - URL: `https://registry.npmjs.com`
+    - Scope: `com.hecomi`
+  - Install uShaderTemplate in Package Manager. 
 
 Usage
 -----
